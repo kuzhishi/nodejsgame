@@ -1,12 +1,14 @@
 FROM node
 MAINTAINER keisuo <keisuo2016@gmail.com>
 
-ADD ./index.js /src
-ADD ./package.json /src
-ADD ./page.html /src
+RUN  mkdir src
+COPY .  /src
 
-RUN cd /src;npm install
+
+WORKDIR /src
+RUN npm install
+RUN npm install -g nodemon
 
 EXPOSE 3000
 
-CMD ["node","/src/index.js"]
+CMD ["nodemon","index.js"]
